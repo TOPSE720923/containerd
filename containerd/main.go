@@ -171,8 +171,8 @@ func main() {
 	}
 
 	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
+	timestamp = time.Now().Unix()
+	tm = time.Unix(timestamp, 0)
 	fmt.Println("containerd_02 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 
@@ -181,8 +181,8 @@ func main() {
 	}
 
 	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
+	timestamp = time.Now().Unix()
+	tm = time.Unix(timestamp, 0)
 	fmt.Println("containerd_03 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 

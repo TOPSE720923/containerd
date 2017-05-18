@@ -396,8 +396,8 @@ func (c *container) Checkpoint(cpt Checkpoint, checkpointDir string) error {
 	out, err := exec.Command(c.runtime, args...).CombinedOutput()
 
 	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
+	timestamp = time.Now().Unix()
+	tm = time.Unix(timestamp, 0)
 	fmt.Println("containerd_05 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 
