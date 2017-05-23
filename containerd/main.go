@@ -162,6 +162,7 @@ func main() {
 	timestamp := time.Now().Unix()
 	tm := time.Unix(timestamp, 0)
 	fmt.Println("containerd_01 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	logrus.Infof("containerd_01 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 
 	app.Action = func(context *cli.Context) {
@@ -174,6 +175,7 @@ func main() {
 	timestamp = time.Now().Unix()
 	tm = time.Unix(timestamp, 0)
 	fmt.Println("containerd_02 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	logrus.Infof("containerd_02 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 
 	if err := app.Run(os.Args); err != nil {
@@ -184,6 +186,7 @@ func main() {
 	timestamp = time.Now().Unix()
 	tm = time.Unix(timestamp, 0)
 	fmt.Println("containerd_03 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	logrus.Infof("containerd_03 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 
 }

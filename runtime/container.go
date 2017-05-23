@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -343,6 +344,7 @@ func (c *container) Checkpoint(cpt Checkpoint, checkpointDir string) error {
 	//matt's modification --start
 	timestamp := time.Now().Unix()
 	tm := time.Unix(timestamp, 0)
+	logrus.Infof("containerd_04 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	fmt.Println("containerd_04 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 
@@ -398,6 +400,7 @@ func (c *container) Checkpoint(cpt Checkpoint, checkpointDir string) error {
 	//matt's modification --start
 	timestamp = time.Now().Unix()
 	tm = time.Unix(timestamp, 0)
+	logrus.Infof("containerd_05 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	fmt.Println("containerd_05 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
 
