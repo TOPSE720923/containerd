@@ -1,12 +1,12 @@
 package supervisor
 
 import (
-	"sync"
-	"time"
-
+	"fmt"
 	"github.com/Sirupsen/logrus"
 	"github.com/docker/containerd/runtime"
 	"golang.org/x/net/context"
+	"sync"
+	"time"
 )
 
 // Worker interface
@@ -41,8 +41,8 @@ type worker struct {
 // Start runs a loop in charge of starting new containers
 func (w *worker) Start() {
 	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
+	timestamp := time.Now().Unix()
+	tm := time.Unix(timestamp, 0)
 	fmt.Println("containerd_08 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	logrus.Infof("containerd_08 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end

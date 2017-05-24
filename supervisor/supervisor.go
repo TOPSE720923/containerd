@@ -2,6 +2,7 @@ package supervisor
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -268,8 +269,8 @@ func (s *Supervisor) notifySubscribers(e Event) {
 // state of the Supervisor
 func (s *Supervisor) Start() error {
 	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
+	timestamp := time.Now().Unix()
+	tm := time.Unix(timestamp, 0)
 	fmt.Println("containerd_10 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	logrus.Infof("containerd_10 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
 	//matt's modification --end
