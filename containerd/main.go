@@ -243,6 +243,12 @@ func daemon(context *cli.Context) error {
 func startServer(protocol, address string) (*grpc.Server, error) {
 	// TODO: We should use TLS.
 	// TODO: Add an option for the SocketGroup.
+	//matt's modification --start
+	timestamp = time.Now().Unix()
+	tm = time.Unix(timestamp, 0)
+	fmt.Println("containerd_06 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	logrus.Infof("containerd_06 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	//matt's modification --end
 	sockets, err := listeners.Init(protocol, address, "", nil)
 	if err != nil {
 		return nil, err
@@ -261,6 +267,12 @@ func startServer(protocol, address string) (*grpc.Server, error) {
 			logrus.WithField("error", err).Fatal("containerd: serve grpc")
 		}
 	}()
+	//matt's modification --start
+	timestamp = time.Now().Unix()
+	tm = time.Unix(timestamp, 0)
+	fmt.Println("containerd_07 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	logrus.Infof("containerd_07 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	//matt's modification --end
 	return s, nil
 }
 
