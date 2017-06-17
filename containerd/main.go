@@ -121,9 +121,16 @@ func setupDumpStacksTrap() {
 }
 
 func main() {
+	timeStart := time.Now()
 	logrus.SetFormatter(&logrus.TextFormatter{TimestampFormat: time.RFC3339Nano})
 	app := cli.NewApp()
 	app.Name = "containerd"
+
+	f, _ := os.OpenFile("/home/tqz/tqz/test/containerd_output/containerd_output.txt", os.O_WRONLY|os.O_CREATE|os.O_SYNC,
+		0755)
+	os.Stdout = f
+	os.Stderr = f
+
 	if containerd.GitCommit != "" {
 		app.Version = fmt.Sprintf("%s commit: %s", containerd.Version, containerd.GitCommit)
 	} else {
@@ -158,12 +165,12 @@ func main() {
 		return nil
 	}
 
-	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
-	fmt.Println("containerd_01 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_01 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp := time.Now().Unix()
+	// tm := time.Unix(timestamp, 0)
+	// fmt.Println("containerd_01 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_01 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
 
 	app.Action = func(context *cli.Context) {
 		if err := daemon(context); err != nil {
@@ -171,27 +178,31 @@ func main() {
 		}
 	}
 
-	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
-	fmt.Println("containerd_02 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_02 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp = time.Now().Unix()
+	// tm = time.Unix(timestamp, 0)
+	// fmt.Println("containerd_02 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_02 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
 
 	if err := app.Run(os.Args); err != nil {
 		logrus.Fatal(err)
 	}
 
-	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
-	fmt.Println("containerd_03 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_03 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	timesEnd := time.Now()
+	//	tm01 := time.Unix(timestamp01, 0)
+	fmt.Println("main time is  ", timeStart.Sub(timesEnd), "\n")
+	// //matt's modification --start
+	// timestamp = time.Now().Unix()
+	// tm = time.Unix(timestamp, 0)
+	// fmt.Println("containerd_03 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_03 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
 
 }
 
 func daemon(context *cli.Context) error {
+	timeStart := time.Now()
 	stateDir := context.String("state-dir")
 	if err := os.MkdirAll(stateDir, 0755); err != nil {
 		return err
@@ -237,18 +248,22 @@ func daemon(context *cli.Context) error {
 			os.Exit(0)
 		}
 	}
+	timesEnd := time.Now()
+	//	tm01 := time.Unix(timestamp01, 0)
+	fmt.Println("daemon time is  ", timeStart.Sub(timesEnd), "\n")
 	return nil
 }
 
 func startServer(protocol, address string) (*grpc.Server, error) {
 	// TODO: We should use TLS.
 	// TODO: Add an option for the SocketGroup.
-	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
-	fmt.Println("containerd_06 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_06 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp := time.Now().Unix()
+	// tm := time.Unix(timestamp, 0)
+	// fmt.Println("containerd_06 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_06 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timeStart := time.Now()
 	sockets, err := listeners.Init(protocol, address, "", nil)
 	if err != nil {
 		return nil, err
@@ -267,12 +282,15 @@ func startServer(protocol, address string) (*grpc.Server, error) {
 			logrus.WithField("error", err).Fatal("containerd: serve grpc")
 		}
 	}()
-	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
-	fmt.Println("containerd_07 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_07 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp = time.Now().Unix()
+	// tm = time.Unix(timestamp, 0)
+	// fmt.Println("containerd_07 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_07 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timesEnd := time.Now()
+	//	tm01 := time.Unix(timestamp01, 0)
+	fmt.Println("startServer time is  ", timeStart.Sub(timesEnd), "\n")
 	return s, nil
 }
 

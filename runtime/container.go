@@ -341,12 +341,13 @@ func (c *container) Checkpoints(checkpointDir string) ([]Checkpoint, error) {
 
 func (c *container) Checkpoint(cpt Checkpoint, checkpointDir string) error {
 
-	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
-	logrus.Infof("containerd_04 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	fmt.Println("containerd_04 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp := time.Now().Unix()
+	// tm := time.Unix(timestamp, 0)
+	// logrus.Infof("containerd_04 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// fmt.Println("containerd_04 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timeStart := time.Now()
 
 	if checkpointDir == "" {
 		checkpointDir = filepath.Join(c.bundle, "checkpoints")
@@ -397,12 +398,15 @@ func (c *container) Checkpoint(cpt Checkpoint, checkpointDir string) error {
 	add(c.id)
 	out, err := exec.Command(c.runtime, args...).CombinedOutput()
 
-	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
-	logrus.Infof("containerd_05 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	fmt.Println("containerd_05 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp = time.Now().Unix()
+	// tm = time.Unix(timestamp, 0)
+	// logrus.Infof("containerd_05 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// fmt.Println("containerd_05 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timesEnd := time.Now()
+	//	tm01 := time.Unix(timestamp01, 0)
+	fmt.Println("/runtime/container checkpoint() time is  ", timeStart.Sub(timesEnd), "\n")
 
 	if err != nil {
 		return fmt.Errorf("%s: %q", err.Error(), string(out))

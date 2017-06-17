@@ -268,13 +268,13 @@ func (s *Supervisor) notifySubscribers(e Event) {
 // therefore it is save to do operations in the handlers that modify state of the system or
 // state of the Supervisor
 func (s *Supervisor) Start() error {
-	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
-	fmt.Println("containerd_10 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_10 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
-
+	// //matt's modification --start
+	// timestamp := time.Now().Unix()
+	// tm := time.Unix(timestamp, 0)
+	// fmt.Println("containerd_10 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_10 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timeStart := time.Now()
 	logrus.WithFields(logrus.Fields{
 		"stateDir":    s.stateDir,
 		"runtime":     s.runtime,
@@ -288,12 +288,15 @@ func (s *Supervisor) Start() error {
 		}
 	}()
 
-	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
-	fmt.Println("containerd_11 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_11 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp = time.Now().Unix()
+	// tm = time.Unix(timestamp, 0)
+	// fmt.Println("containerd_11 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_11 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timesEnd := time.Now()
+	//	tm01 := time.Unix(timestamp01, 0)
+	fmt.Println("supervisor start() time is  ", timeStart.Sub(timesEnd), "\n")
 
 	return nil
 }

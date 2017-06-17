@@ -40,13 +40,13 @@ type worker struct {
 
 // Start runs a loop in charge of starting new containers
 func (w *worker) Start() {
-	//matt's modification --start
-	timestamp := time.Now().Unix()
-	tm := time.Unix(timestamp, 0)
-	fmt.Println("containerd_08 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_08 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
-
+	// //matt's modification --start
+	// timestamp := time.Now().Unix()
+	// tm := time.Unix(timestamp, 0)
+	// fmt.Println("containerd_08 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_08 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timeStart := time.Now()
 	defer w.wg.Done()
 	for t := range w.s.startTasks {
 		started := time.Now()
@@ -109,10 +109,13 @@ func (w *worker) Start() {
 		})
 	}
 
-	//matt's modification --start
-	timestamp = time.Now().Unix()
-	tm = time.Unix(timestamp, 0)
-	fmt.Println("containerd_09 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	logrus.Infof("containerd_09 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
-	//matt's modification --end
+	// //matt's modification --start
+	// timestamp = time.Now().Unix()
+	// tm = time.Unix(timestamp, 0)
+	// fmt.Println("containerd_09 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// logrus.Infof("containerd_09 time is ", tm.Format("2006-01-02 03:04:05:55 PM"))
+	// //matt's modification --end
+	timesEnd := time.Now()
+	//	tm01 := time.Unix(timestamp01, 0)
+	fmt.Println("supervisor.worker start() time is  ", timeStart.Sub(timesEnd), "\n")
 }
